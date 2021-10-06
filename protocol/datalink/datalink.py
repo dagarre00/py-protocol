@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 from time import sleep
 from serial import Serial
@@ -14,8 +15,8 @@ class Datalink:
 
     @staticmethod
     def _calculate_checksum(payload: bytes) -> bytes:
-        return (0xFF - sum([x for x in payload])).to_bytes(
-            1, byteorder="big", signed=False
+        return (0xFF - sum([x for x in payload])%256).to_bytes(
+            1, byteorder="little", signed=False
         )
 
     def run(self):

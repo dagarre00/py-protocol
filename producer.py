@@ -14,4 +14,4 @@ def worker(input_queue: Queue):
             payload=dumps(payload),
         )
         logging.info(f"sending payload over mqttt {dumps(payload)}")
-
+        

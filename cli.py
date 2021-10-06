@@ -14,10 +14,9 @@ serial_output_queue = Queue()
 
 parser_output_queue = Queue()
 
-
 input_package =  Queue()
 
-uart = Serial("/dev/tty.usbmodem14223101", 115200, timeout=0.1)
+uart = Serial("/dev/ttyUSB0", 115200, timeout=0.1)
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
