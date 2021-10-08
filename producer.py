@@ -9,7 +9,7 @@ TOPIC_ROCIO = TOPIC_NAME_BASE + 'Punto_de_rocio'
 client = mqtt.Client(client_id="py-producer")
 client.connect(host="broker.hivemq.com", port=1883)
 
-def worker(input_queue: Queue):
+def worker(input_queue: Queue):    
     while True:
         payload = input_queue.get()
         client.publish(

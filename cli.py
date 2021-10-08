@@ -7,7 +7,8 @@ from protocol.datalink.datalink import Datalink
 
 import parser
 import producer
-import proceser
+import receiver
+import sensor_proceser
 
 
 serial_input_queue = Queue()
@@ -15,6 +16,7 @@ serial_output_queue = Queue()
 
 parser_output_queue = Queue()
 proceser_output_queue = Queue()
+receiver_output_queue = Queue()
 
 input_package =  Queue()
 
@@ -31,9 +33,8 @@ link = Datalink(
 
 Thread(target=link.run).start()
 Thread(target=parser.worker, args=(serial_input_queue, parser_output_queue)).start()
-Thread(target=proceser.worker, args=(parser_output_queue,proceser_output_queue)).start()
+Thread(target=sensor_proceser.worker, args=(parser_output_queue,proceser_output_queue)).start()
 Thread(target=producer.worker, args=(proceser_output_queue,)).start()
+Thread(target=receiver.worker, args=(link,)).start()
 
 producer.client.loop_forever()
-
-

@@ -5,10 +5,6 @@ from math import log
 HUMIDITY_KEY = 0xA4
 TEMPERATURE_KEY = 0xA6
 
-RED_LED_KEY = 0xB4
-GREEN_LED_KEY = 0xB5
-BLUE_LED_KEY = 0xB6
-
 def worker(input_queue: Queue, output_queue: Queue):
     while True:    
         payload: dict = input_queue.get()
